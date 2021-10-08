@@ -12,12 +12,12 @@ import Combine
 
 struct ApiMockResources: DataProvider {
     
-    
+    /// mock func for get news
     func getNews() -> AnyPublisher<News, NetworkManager.APIError> {
         
-        let featuredArt = [Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc"),
-                            Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc"),
-                            Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc")]
+        let featuredArt = [Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc", url: "www.google.com"),
+                           Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc", url: "www.google.com"),
+                           Articles(image: "desert", title: "SOMETHING NEW", description: "Calorie Counter App", author: "abc", url: "www.google.com")]
         
         let data = News(articles: featuredArt, type: "top")
         return Just(data)

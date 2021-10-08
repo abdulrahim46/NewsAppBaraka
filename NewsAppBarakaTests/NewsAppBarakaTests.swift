@@ -18,7 +18,7 @@ class NewsAppBarakaTests: XCTestCase {
         subscriptions = []
     }
     
-    // test for news fetcher api
+    /// test for news fetcher api
     func testLoadingDataForNews() {
         let mock = ApiMockResources()
         let fetcher = NewsViewModel(apiResource: mock)
