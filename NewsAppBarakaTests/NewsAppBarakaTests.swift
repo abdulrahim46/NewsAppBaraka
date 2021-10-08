@@ -6,28 +6,36 @@
 //
 
 import XCTest
+import Combine
+
 @testable import NewsAppBaraka
 
 class NewsAppBarakaTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var subscriptions = Set<AnyCancellable>()
+    
+    override func tearDown() {
+        subscriptions = []
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    // test for news fetcher api
+    func testLoadingDataForNews() {
+        let mock = ApiMockResources()
+        let fetcher = NewsViewModel(apiResource: mock)
+        
+        XCTAssertEqual(fetcher.news?.articles, nil, "starting with no data...")
+        
+        let promise = expectation(description: "loading 3 news data count...")
+        fetcher.$news.sink{ (completion) in
+            XCTFail()
+        } receiveValue: { (news) in
+            if news?.articles.count == 3 {
+                promise.fulfill()
+            }
+        }.store(in: &subscriptions)
+        
+        wait(for: [promise], timeout: 1)
+        
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+   
 }

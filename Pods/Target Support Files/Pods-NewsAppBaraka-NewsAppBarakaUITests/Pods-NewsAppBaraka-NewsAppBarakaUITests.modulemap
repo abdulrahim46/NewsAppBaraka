@@ -1,0 +1,6 @@
+framework module Pods_NewsAppBaraka_NewsAppBarakaUITests {
+  umbrella header "Pods-NewsAppBaraka-NewsAppBarakaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
