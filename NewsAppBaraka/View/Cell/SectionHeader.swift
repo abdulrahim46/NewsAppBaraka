@@ -12,6 +12,7 @@ class SectionHeader: UICollectionReusableView {
     
     static let reuseIdentifier: String = "SectionHeaderCell"
     
+    /// properties & views 
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
     
@@ -20,10 +21,7 @@ class SectionHeader: UICollectionReusableView {
         setup()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    /// setupview here
     private func setup() {
         let separator = UIView(frame: .zero)
         separator.translatesAutoresizingMaskIntoConstraints = false
@@ -53,4 +51,9 @@ class SectionHeader: UICollectionReusableView {
         titleLabel.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 22, weight: .bold))
         subtitleLabel.textColor = .secondaryLabel
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

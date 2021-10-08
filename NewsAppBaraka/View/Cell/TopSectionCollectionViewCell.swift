@@ -10,8 +10,11 @@ import SDWebImage
 
 class TopSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
     
+    
+    // MARK:- Properties & views
+    
     static let reuseIdentifier: String = "TopSectionCell"
-
+    
     let tagline = UILabel()
     let name = UILabel()
     let subtitle = UILabel()
@@ -19,7 +22,11 @@ class TopSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        setupView()
+    }
+    
+    /// setup view for cell
+    func setupView() {
         let separator = UIView(frame: .zero)
         separator.translatesAutoresizingMaskIntoConstraints = false
         separator.backgroundColor = .quaternaryLabel
@@ -55,8 +62,8 @@ class TopSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
         stackView.setCustomSpacing(10, after: subtitle)
     }
 
+    /// configure cell here
     func configure(with article: Articles) {
-        //tagline.text = app.tagline.uppercased()
         name.text = article.title
         subtitle.text = article.description
         if let imageData = article.image {
@@ -65,7 +72,6 @@ class TopSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
                                   options: .continueInBackground,
                                   completed: nil)
         }
-        //imageView.image = UIImage(named: app.image ?? "")
     }
 
     required init?(coder: NSCoder) {

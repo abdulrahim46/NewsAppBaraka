@@ -10,6 +10,7 @@ import UIKit
 class BottomSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
     static let reuseIdentifier: String = "BottomTableCell"
 
+    /// properties & views
     let name = UILabel()
     let subtitle = UILabel()
     let imageView = UIImageView()
@@ -20,6 +21,7 @@ class BottomSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
        setup()
     }
     
+    /// view setup
     private func setup() {
         imageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         authorLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -62,6 +64,7 @@ class BottomSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
         style()
     }
     
+    /// cell style setup
     private func style() {
         name.font = UIFont.preferredFont(forTextStyle: .headline)
         name.sizeThatFits(CGSize(width: 10.0, height: 10.0))
@@ -80,6 +83,7 @@ class BottomSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
         authorLabel.textColor = .systemBlue
     }
 
+    /// configure cell here
     func configure(with article: Articles) {
         name.text = article.title
         subtitle.text = article.description

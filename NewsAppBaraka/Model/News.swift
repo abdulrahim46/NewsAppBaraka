@@ -7,11 +7,8 @@
 
 import Foundation
 
+/// News model
 struct News: Encodable, Decodable, Hashable {
-//    static func == (lhs: News, rhs: News) -> Bool {
-//        return lhs == rhs
-//    }
-    
     let articles: [Articles]
     let type: String?
     
@@ -21,6 +18,7 @@ struct News: Encodable, Decodable, Hashable {
     }
 }
 
+/// Articles model
 struct Articles: SectionData, Encodable, Decodable, Hashable {
     let image: String?
     let title: String?
