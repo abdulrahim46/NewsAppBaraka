@@ -23,7 +23,15 @@ class NewsViewModel {
     init(apiResource: DataProvider = NetworkManager()) {
         self.apiResource = apiResource
         fetchNews()
+        unsubscribe()
     }
+    
+    public func unsubscribe() -> Void {
+            anyCancelable.forEach {
+                $0.cancel()
+            }
+            anyCancelable.removeAll()
+        }
     
     /// fetching news from server
     func fetchNews() {
@@ -39,10 +47,10 @@ class NewsViewModel {
                 case .failure(let error):
                     print(error)
                 }
-            } receiveValue: { [weak self] news in
-                self?.topNews = news.articles
-                self?.news = news
-                self?.createDataSource()
+            } receiveValue: { news in
+                self.topNews = news.articles
+                self.news = news
+                self.createDataSource()
                 
             }
             .store(in: &anyCancelable)

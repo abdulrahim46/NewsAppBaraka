@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     private var news: News?
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<News, Articles>?
+    //var dataSource: UICollectionViewDiffableDataSource<News, Articles>?
     
     private(set) var loadingIndicator = UIActivityIndicatorView(style: .large)
     
@@ -81,10 +81,8 @@ class ViewController: UIViewController {
         viewModel.$news
             .receive(on: DispatchQueue.main)
             .sink { news in
-                DispatchQueue.main.async { [weak self] in
-                    self?.collectionView.reloadData()
-                    self?.loadingIndicator.stopAnimating()
-                }
+                self.collectionView.reloadData()
+                self.loadingIndicator.stopAnimating()
             }
             .store(in: &anyCancelable)
         
@@ -199,6 +197,9 @@ class ViewController: UIViewController {
         return layoutSectionHeader
     }
     
+    deinit {
+        print("viewcontroller instance clear from memory")
+    }
     
     
 }

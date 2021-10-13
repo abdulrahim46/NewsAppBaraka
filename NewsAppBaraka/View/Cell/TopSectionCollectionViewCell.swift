@@ -77,4 +77,8 @@ class TopSectionCollectionViewCell: UICollectionViewCell, AppConfigurable {
     required init?(coder: NSCoder) {
         fatalError("Not happening")
     }
+        
+    deinit {
+        print("cleared from top cell")
+    }
 }
